@@ -6,7 +6,7 @@ const cors = require('cors');
 
 const app = express()
 
-const whitelist = [process.env.CLIENT_URL]
+const whitelist = ["https://cbre-client.surge.sh", "http://cbre-client.surge.sh/"]
 
 const corsOptions = {
   origin: (origin, callback) => {
