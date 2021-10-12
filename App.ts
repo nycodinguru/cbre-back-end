@@ -1,7 +1,13 @@
 import express from "express"
 const bodyParser = require('body-parser');
 
+
+const cors = require('cors');
+
 const app = express()
+app.use(cors({
+  origin: ['https://cbre-client.surge.sh/']
+}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
