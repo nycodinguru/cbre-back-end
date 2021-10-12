@@ -5,13 +5,23 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express()
-app.use(cors({
-  origin: ['https://cbre-client.surge.sh/']
-}));
+
+const whitelist = [process.env.CLIENT_URL]
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error())
+    }
+  }
+}
+
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 
 const appRouter = require('./controllers/API/api.ts');
 
