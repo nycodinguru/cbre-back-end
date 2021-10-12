@@ -1,12 +1,15 @@
 import express from "express"
 const bodyParser = require('body-parser');
-
+require('dotenv').config()
 
 const cors = require('cors');
 
 const app = express()
 
-const whitelist = [process.env.CLIENT_URL]
+const clientURL = process.env.CLIENT_URL
+
+const whitelist = [clientURL]
+console.log(whitelist)
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin)) {
