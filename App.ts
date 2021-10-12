@@ -6,10 +6,8 @@ const cors = require('cors');
 
 const app = express()
 
-const clientURL = process.env.CLIENT_URL
+const whitelist = [process.env.CLIENT_URL]
 
-const whitelist = [clientURL]
-console.log(whitelist)
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin)) {
